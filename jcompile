@@ -1,3 +1,7 @@
 #!/bin/sh
-javac -cp .:tester.jar *.java
-
+if javac -cp .:tester.jar Tweets.java
+then
+	echo "Tweets.java compiled successfully"
+else
+	echo "Tweets.java failed to compile"
+fi

@@ -146,4 +146,3 @@ class TLEmpty implements TweetList{
     //blah
   }
 }
-}

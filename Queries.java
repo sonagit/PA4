@@ -18,7 +18,7 @@ interface IQuery {
  *****************************************************************************/
 class UserQuery implements IQuery{
  
- String username
+ String username;
  
  /**
   * Constructor for UserQuery initializes all fields
