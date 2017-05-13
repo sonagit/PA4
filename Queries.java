@@ -64,7 +64,7 @@ class BeforeQuery implements IQuery {
 }
 
 /******************************************************************************
- * This class represents a query for tweets whose content contains a particular string.
+ * This class represents a query for tweets whose content contains a particular strin.g
  *
  *****************************************************************************/
 class ContainsQuery implements IQuery {
