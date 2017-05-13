@@ -12,16 +12,82 @@ interface IQuery {
   boolean matches(ATweet atweet);
 }
 
-// You will implement the three classes below
-
-class ContainsQuery implements IQuery {
-
+/******************************************************************************
+ * This class represents a query for tweets containing a given string, which represents the username to search.
+ *
+ *****************************************************************************/
+class UserQuery implements IQuery{
+ 
+ String username
+ 
+ /**
+  * Constructor for UserQuery initializes all fields
+  */
+  UserQuery(String username) {
+   this.username = username;
+  }
+  
+ /**
+  * Returns true if the tweet's user has the given username, false otherwise
+  *
+  * @param atweet the ATweet to check
+  * @return true if atweet matches the query, false otherwise
+  */
+ boolean matches(ATweet atweet) {
+  return this.username == atweet.username;
+ }
 }
 
+/******************************************************************************
+ * This class represents a query for tweets no later than a certain date.
+ *
+ *****************************************************************************/
 class BeforeQuery implements IQuery {
 
+ DateTime beforeThis;
+
+ /**
+  * Constructor for UserQuery initializes all fields
+  */
+ BeforeQuery(DateTime beforeThis) {
+  this.beforeThis = beforeThis;
+ }
+ /**
+  * Returns true if the tweet's datetime is earlier than beforeThis, false otherwise
+  *
+  * @param atweet the ATweet to check
+  * @return true if atweet matches the query, false otherwise
+  */
+ boolean matches(ATweet atweet) {
+  return atweet.timestamp.earlierThan(this.beforeThis);
+ }
 }
 
-class UserQuery implements IQuery{
+/******************************************************************************
+ * This class represents a query for tweets whose content contains a particular string.
+ *
+ *****************************************************************************/
+class ContainsQuery implements IQuery {
 
+ String toFind;
+ 
+ /**
+  * Constructor for UserQuery initializes all fields
+  */
+ ContainsQuery(String toFind) {
+  this.toFind = toFind; //the String to search for in tweets
+ }
+ 
+ /**
+  * Returns true if the tweet's content contains toFind, false otherwise
+  *
+  * @param atweet the ATweet to check
+  * @return true if atweet matches the query, false otherwise
+  */
+ boolean matches(ATweet atweet) {
+  return atweet.content.contains(this.toFind);
+ }
 }
+
+
+
