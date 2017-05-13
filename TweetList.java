@@ -37,12 +37,53 @@ interface TweetList {
 // You will implement the methods above in each of the two classes below
 
 class TLLink implements TweetList{
+
   ATweet tweet;
   TweetList rest;
+
+  /**
+   * Constructor for TLLink that initializes all fields
+   *
+   * @param tweet
+   * @param rest
+   */
   TLLink(ATweet tweet, TweetList rest){
     this.tweet = tweet;
     this.rest=rest;
   }
+
+  /**
+   * Returns a new TweetList with only the tweets matching the given query.
+   * Should optionally check and include the value field in the resulting
+   * list, along with recursively checking the rest of the list.
+   *
+   * @param q an IQuery
+   * @return TweetList
+   */
+  TweetList filter(IQuery q) {
+    //blah
+  }
+
+  /**
+   * Returns the number of tweets matching the given query
+   *
+   * @param q
+   * @return int
+   */
+  int count(IQuery q) {
+    //blah
+  }
+
+  /**
+   * Returns the number of tweets in the list
+   *
+   * @param none
+   * @return string
+   */
+  int length() {
+    //blah
+  }
+
 }
 
 class TLEmpty implements TweetList{

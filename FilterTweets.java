@@ -1,4 +1,9 @@
 public class FilterTweets {
+  /**
+  * Constructor for main
+  *
+  * @param args command line arguments
+  */
   public static void main(String[] args) {
     DateTime queryDT;
     TweetList t = new SampleTweets().t;
@@ -14,4 +19,3 @@ public class FilterTweets {
 
   }
 }
-
