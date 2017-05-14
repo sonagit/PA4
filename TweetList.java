@@ -63,8 +63,13 @@ class TLLink implements TweetList{
    * @param q an IQuery
    * @return TweetList
    */
-  TweetList filter(IQuery q) {
-    //blah
+  public TweetList filter(IQuery q) {
+    if(q.matches(this.tweet)) {
+      return new TLLink(this.tweet, this.rest.filter(q));
+    }
+    else {
+      return new TLEmpty();
+    }
   }
 
   /**
@@ -73,8 +78,13 @@ class TLLink implements TweetList{
    * @param q
    * @return int
    */
-  int count(IQuery q) {
-    //blah
+  public int count(IQuery q) {
+    if(q.matches(this.tweet)) {
+      return 1 + this.rest.count(q);
+    }
+    else {
+      return 0;
+    }
   }
 
   /**
@@ -83,8 +93,8 @@ class TLLink implements TweetList{
    * @param none
    * @return string
    */
-  int length() {
-    //blah
+  public int length() {
+    return 1 + this.rest.length();
   }
   
  /**
@@ -94,8 +104,8 @@ class TLLink implements TweetList{
    * @param none
    * @return string
    */
-  String toHTML() {
-    //blah
+  public String toHTML() {
+    return this.tweet.toHTML() + this.rest.toHTML();
   }
 }
 
@@ -107,32 +117,32 @@ class TLEmpty implements TweetList{
   TLEmpty(){ }
   
   /**
-   * Returns the base case
+   * Returns the base case: an empty list
    *
    * @param q an IQuery
    * @return TweetList
    */
-  TweetList filter(IQuery q) {
-    //blah
+  public TweetList filter(IQuery q) {
+    return new TLEmpty();
   }
 
   /**
-   * Returns the base case
+   * Returns the base case: 0
    *
    * @param q
    * @return int
    */
-  int count(IQuery q) {
+  public int count(IQuery q) {
     return 0;
   }
 
   /**
-   * Returns the base case
+   * Returns the base case: 0
    *
    * @param none
    * @return string
    */
-  int length() {
+  public int length() {
     return 0;
   }
   
@@ -142,7 +152,7 @@ class TLEmpty implements TweetList{
    * @param none
    * @return string
    */
-  String toHTML() {
-    //blah
+  public String toHTML() {
+    return " ";
   }
 }

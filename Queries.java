@@ -33,8 +33,8 @@ class UserQuery implements IQuery{
   * @param atweet the ATweet to check
   * @return true if atweet matches the query, false otherwise
   */
- boolean matches(ATweet atweet) {
-  return this.username == atweet.username;
+ public boolean matches(ATweet atweet) {
+  return this.username == atweet.user.username;
  }
 }
 
@@ -58,7 +58,7 @@ class BeforeQuery implements IQuery {
   * @param atweet the ATweet to check
   * @return true if atweet matches the query, false otherwise
   */
- boolean matches(ATweet atweet) {
+ public boolean matches(ATweet atweet) {
   return atweet.timestamp.earlierThan(this.beforeThis);
  }
 }
@@ -84,7 +84,7 @@ class ContainsQuery implements IQuery {
   * @param atweet the ATweet to check
   * @return true if atweet matches the query, false otherwise
   */
- boolean matches(ATweet atweet) {
+ public boolean matches(ATweet atweet) {
   return atweet.content.contains(this.toFind);
  }
 }
