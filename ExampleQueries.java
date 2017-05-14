@@ -1,5 +1,5 @@
 /**
- *
+ * Test out all them fancy methods
  */
 class ExampleQueries {
   
