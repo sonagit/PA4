@@ -1,8 +1,11 @@
 #!/bin/bash
 set -e
 echo $'\n\n\n\n\n'
-javac -cp .:tester.jar Tweets.java
+if [[ ! -e ATweets.class ]]
+then 
+	javac -cp .:tester.jar Tweets.java
 	echo $'Tweets.java compiled successfully\n'
+fi
 javac -cp .:tester.jar Queries.java
 	echo $'Queries.java compiled successfully\n'
 javac -cp .:tester.jar TweetList.java
@@ -13,7 +16,7 @@ javac -cp .:tester.jar FilterTweets.java
 	echo $'FilterTweets.java compiled successfully\n'
 
 # Run FilterTweets if 1 is passed
-if [ $1 -eq 1 ]
+if [[ $1 -eq 1 ]]
 then 
   java FilterTweets html > test.html
   echo $'Opening test.html in 3...\n'

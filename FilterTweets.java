@@ -18,13 +18,13 @@ public class FilterTweets {
       System.out.println("java FilterTweets <command> <criterion> <value>\n");
     }
     // Print out HTML
-    else if(args.length > 0 && args[0]=="html") {
+    else if( args.length > 0 && args[0].equals("html") ) {
       System.out.println(htmlStart);
       System.out.println("Hi I'm a wizard");
       System.out.println(htmlEnd);
     }
     // Print out number
-    else if(args.length > 0 && args[0]=="count") {
+    else if(args.length > 0 && args[0].equals("count")) {
       System.out.println("THIS MANY\n*Holds up hands with fingers*");
     } //*/
     else {
