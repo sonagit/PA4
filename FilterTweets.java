@@ -25,9 +25,23 @@ public class FilterTweets {
       System.out.println(htmlStart);
       
       // User queries
-      uq = new UserQuery(args[2]);
-      System.out.println(t.filter(uq).toHTML());
-      
+      if( args[1].equals("user") ) {
+        UserQuery uq = new UserQuery(args[2]);
+        System.out.println(t.filter(uq).toHTML());
+      }
+
+      // before queries
+      if( args[1].equals("before") ) {
+        String[] dt = args[2].split("/");
+        int d = Integer.parseInt(dt[0]);
+        int m = Integer.parseInt(dt[1]);
+        int y = Integer.parseInt(dt[2]);
+//
+	System.out.println(new DateTime(d,m,y).toHTML());
+//        BeforeQuery bq = new BeforeQuery(new DateTime(d,m,y));
+//        System.out.println(t.filter(bq).toHTML());
+      }
+
       // Print end HTML
       System.out.println(htmlEnd);
     }
