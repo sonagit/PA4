@@ -34,7 +34,7 @@ class UserQuery implements IQuery{
   * @return true if atweet matches the query, false otherwise
   */
  public boolean matches(ATweet atweet) {
-  return this.username == atweet.user.username;
+  return this.username.equals(atweet.user.username);
  }
 }
 
