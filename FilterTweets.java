@@ -6,9 +6,8 @@ public class FilterTweets {
 	*/
 	public static void main(String[] args) {
 		
-		DateTime queryDT;
 		TweetList t = new SampleTweets().t;
-
+		
 		// For starting and ending HTML string output
 		String htmlStart = "<html>\n<head>\n<meta charset='utf8'>\n <link rel=\"stylesheet\" type=\"text/css\" href=\"tweetstyle.css\">\n</head>\n<body>\n";
 		String htmlEnd = "\n</body>\n</html>\n";
@@ -18,8 +17,8 @@ public class FilterTweets {
 			System.out.println("Please provide a command: \n");
 			System.out.println("java FilterTweets <command> <criterion> <value>\n");
 		}
-		
-		/**************************************************************************/
+
+/*****************************************************************************/
 		// Print out HTML
 		else if( args.length > 0 && args[0].equals("html") ) {
 			// Print starting HTML
@@ -31,42 +30,64 @@ public class FilterTweets {
 				System.out.println(t.filter(uq).toHTML());
 			}
 
-			// before queries
+			// Before queries
 			if( args[1].equals("before") ) {
+				
+				// Parse date string to ints
 				String[] dt = args[2].split("/");
 				int d = Integer.parseInt(dt[0]);
 				int m = Integer.parseInt(dt[1]);
 				int y = Integer.parseInt(dt[2]);
 				
-				//System.out.println(new DateTime(d,m,y).toHTML());
 				BeforeQuery bq = new BeforeQuery(new DateTime(d,m,y));
 				System.out.println(t.filter(bq).toHTML());
+			}
+
+			// Contains queries
+			if(args[1].equals("contains")) {
+				ContainsQuery cq = new ContainsQuery(args[2]);
+				System.out.println(t.filter(cq).toHTML());
 			}
 
 			// Print end HTML
 			System.out.println(htmlEnd);
 		}
 		
-		/**************************************************************************/
+/**************************************************************************/
 		// Print out number
 		else if(args.length > 0 && args[0].equals("count")) {
-			if(args[1].equals("user") {
-				UserQuery uq = new UserQuery(args[2])
+			
+			// User queries
+			if( args[1].equals("user") ) {
+				UserQuery uq = new UserQuery(args[2]);
 				System.out.println(t.count(uq));
 			}
-			if(args[1].equals("before") {
+			
+			// Before queries
+			if( args[1].equals("before") ) {
+				
+				// Parse date string to ints
+				String[] dt = args[2].split("/");
+				int d = Integer.parseInt(dt[0]);
+				int m = Integer.parseInt(dt[1]);
+				int y = Integer.parseInt(dt[2]);
+
+				BeforeQuery bq = new BeforeQuery(new DateTime(d,m,y));
+				System.out.println(t.count(bq));
 				
 			}
-			if(args[1].equals("contains") {
-				System.out.println();
+			
+			// Contains queries
+			if( args[1].equals("contains") ) {
+				ContainsQuery cq = new ContainsQuery(args[2]);
+				System.out.println(t.count(cq));
 			}
-			System.out.println("THIS MANY\n*Holds up hands with fingers*");
-		} //*/
+		}
 		
 		// capture typos
 		else {
-		System.out.println("Incorrect command. Please use the following syntax: \n");
-		System.out.println("java FilterTweets <command> <criterion> <value>\n");
+			System.out.println("Incorrect command. Please use the following syntax: \n");
+			System.out.println("java FilterTweets <command> <criterion> <value>\n");
 		}
 	}
 }
