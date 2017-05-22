@@ -41,18 +41,18 @@ interface TweetList {
  *****************************************************************************/
 class TLLink implements TweetList{
 
-  ATweet tweet;
+  ATweet value;
   TweetList rest;
 
   /**
    * Constructor for TLLink that initializes all fields
    *
-   * @param tweet
+   * @param value
    * @param rest
    */
-  TLLink(ATweet tweet, TweetList rest){
-    this.tweet = tweet;
-    this.rest=rest;
+  TLLink(ATweet value, TweetList rest){
+    this.value = value;
+    this.rest = rest;
   }
 
   /**
@@ -64,11 +64,11 @@ class TLLink implements TweetList{
    * @return TweetList
    */
   public TweetList filter(IQuery q) {
-    if(q.matches(this.tweet)) {
-      return new TLLink(this.tweet, this.rest.filter(q));
+    if(q.matches(this.value)) {
+      return new TLLink(this.value, this.rest.filter(q));
     }
     else {
-      return new TLEmpty();
+      return this.rest.filter(q);
     }
   }
 
@@ -79,11 +79,11 @@ class TLLink implements TweetList{
    * @return int
    */
   public int count(IQuery q) {
-    if(q.matches(this.tweet)) {
+    if(q.matches(this.value)) {
       return 1 + this.rest.count(q);
     }
     else {
-      return 0;
+      return this.rest.count(q);
     }
   }
 
@@ -105,7 +105,7 @@ class TLLink implements TweetList{
    * @return string
    */
   public String toHTML() {
-    return this.tweet.toHTML() + this.rest.toHTML();
+    return this.value.toHTML() + this.rest.toHTML();
   }
 }
 
@@ -114,7 +114,11 @@ class TLLink implements TweetList{
  *
  *****************************************************************************/
 class TLEmpty implements TweetList{
-  TLEmpty(){ }
+ /**
+  * Constructor for TLEmpty
+  *
+  */ 
+ TLEmpty(){ }
   
   /**
    * Returns the base case: an empty list
